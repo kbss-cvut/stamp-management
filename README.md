@@ -1,4 +1,4 @@
-# stamp-management
+# STAMP Management
 
 This repository represent collection of tools to process analysis based on STAMP model.
 - [Convertor from BPMN to STAMP](https://github.com/kbss-cvut/bpmn2stamp)
