@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx/
+    container_name: stamp-manager-nginx
+    restart: always
+    ports:
+      - "${PORT:-8090}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - local-graphdb
+
+  stamp-viewer:
+    image: ghcr.io/kbss-cvut/stamp-viewer:latest
+    restart: always
+    environment:
+      API_URL: ${API_URL}
+    depends_on:
+      - stamp-manager
+      - local-graphdb
+
+  stamp-manager:
+    image: ghcr.io/kbss-cvut/stamp-manager:latest
+    restart: always
+    environment:
+      STAMP_ANALYSIS_REPOSITORY: ${STAMP_ANALYSIS_REPOSITORY}
+      OCCURRENCE_DATA_REPOSITORY: ${OCCURRENCE_DATA_REPOSITORY}
+      REPOSITORY_USERNAME: ${REPOSITORY_USERNAME}
+      REPOSITORY_PASSWORD: ${REPOSITORY_PASSWORD}
+    depends_on:
+      - local-graphdb
+
+  local-graphdb:
+    build:
+      context: .
+      dockerfile: db-server/Dockerfile
+      args:
+        GRAPHDB_ZIP: ${GRAPHDB_ZIP}
+    container_name: local-graphdb
+    volumes:
+      - stamp-manager-db:/graphdb/home
+
+volumes:
+  stamp-manager-db:
