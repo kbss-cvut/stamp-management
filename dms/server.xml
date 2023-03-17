@@ -21,8 +21,8 @@
 
     <Resource name="jdbc/OpenKMDS" auth="Container" type="javax.sql.DataSource"
           maxActive="100" maxIdle="30" maxWait="10000" validationQuery="select 1"
-          username="openkm" password="openkm" driverClassName="org.postgresql.Driver"
-          url="jdbc:postgresql://openkm-db:5432/openkmdb"/>
+          username="stampmanager" password="stamp" driverClassName="org.postgresql.Driver"
+          url="jdbc:postgresql://dms-db:5432/stampmanager"/>
 
     <Resource name="mail/OpenKM" auth="Container" type="javax.mail.Session"
               mail.smtp.host="localhost" mail.from="noreply@openkm.com"/>

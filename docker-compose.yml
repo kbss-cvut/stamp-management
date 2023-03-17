@@ -42,5 +42,25 @@ services:
     volumes:
       - stamp-manager-db:/graphdb/home
 
+  dms:
+    build:
+      context: dms
+      dockerfile: Dockerfile.openkm
+    depends_on:
+      - dms-db
+    volumes:
+      - dms:/opt/tomcat/repository
+
+  dms-db:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=stampmanager
+      - POSTGRES_USER=stampmanager
+      - POSTGRES_PASSWORD=stamp
+    volumes:
+      - dms-db:/var/lib/postgresql/data
+
 volumes:
   stamp-manager-db:
+  dms:
+  dms-db:
