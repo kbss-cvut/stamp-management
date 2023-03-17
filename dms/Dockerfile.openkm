@@ -1,0 +1,10 @@
+FROM openkm/openkm-ce
+ 
+COPY  OpenKM.cfg /opt/tomcat/OpenKM.cfg
+COPY  server.xml /opt/tomcat/conf/server.xml
+
+
+EXPOSE 8080
+
+CMD /opt/openkm/bin/catalina.sh run
+
