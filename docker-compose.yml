@@ -5,13 +5,12 @@ services:
     build: ./nginx/
     container_name: stamp-manager-nginx
     restart: always
+    environment:
+      SERVER_BASEPATH: ${SERVER_BASEPATH:-}
     ports:
       - "${PORT:-8090}:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - local-graphdb
-
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf.template
   stamp-viewer:
     image: ghcr.io/kbss-cvut/stamp-viewer:latest
     restart: always
