@@ -3,4 +3,10 @@ service fcgiwrap start
 chmod +x /deploy/nginx/cgi-bin/* 2> /dev/null
 chown nginx /var/run/fcgiwrap.socket
 chgrp nginx /var/run/fcgiwrap.socket
+
+export FILE=/etc/nginx/nginx.conf.template
+if [ -f "$FILE" ]; then
+  envsubst '${SERVER_BASEPATH}' < $FILE > /etc/nginx/nginx.conf
+fi
+
 nginx -g 'daemon off;'
