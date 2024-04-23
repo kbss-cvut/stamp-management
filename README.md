@@ -6,6 +6,10 @@ This repository represent collection of tools to process analysis based on STAMP
 - [STAMP viewer application frontend](https://github.com/kbss-cvut/stamp-viewer)
 - [STAMP manager application backend](https://github.com/kbss-cvut/stamp-manager)
 
+## Running main application
+
+1) start the application using `docker-compose up`
+2) open the application at `http://localhost:8090`
 
 -----
 This work has been supported by the grant [No. CK01000204 "Digitalization of integrated aviation safety oversight"](https://starfos.tacr.cz/en/project/CK01000073) of Technology Agency of the Czech Republic.
